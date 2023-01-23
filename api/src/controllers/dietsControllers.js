@@ -1,11 +1,11 @@
-const {Diet} = require("../db")
+const { Diet } = require("../db");
 
 const createDiet = (diet) => {
   return Diet.create(diet);
 };
 
 const getDiets = () => {
-   return Diet.findAll();
+  return Diet.findAll();
 };
 
-module.exports =  { createDiet, getDiets } 
+module.exports = { createDiet, getDiets };

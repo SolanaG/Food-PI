@@ -1,5 +1,9 @@
-const {allRecipesHandler, recipeByIdHandler, createRecipeHandler} = require('../handlers/recipeHandler')
-const recipesRouter = require('express').Router();
+const {
+  allRecipesHandler,
+  recipeByIdHandler,
+  createRecipeHandler,
+} = require("../handlers/recipeHandler");
+const recipesRouter = require("express").Router();
 
 // 1
 recipesRouter.get("/", allRecipesHandler);
@@ -8,6 +12,6 @@ recipesRouter.get("/", allRecipesHandler);
 recipesRouter.get("/:id", recipeByIdHandler);
 
 // 3
-recipesRouter.post('/', createRecipeHandler);
+recipesRouter.post("/", createRecipeHandler);
 
 module.exports = recipesRouter;

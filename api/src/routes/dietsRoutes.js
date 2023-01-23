@@ -1,9 +1,11 @@
+const {
+  createDietHandler,
+  getAllDietsHandler,
+} = require("../handlers/dietHandler");
+const dietsRouter = require("express").Router();
 
-const { createDietHandler, getAllDietsHandler } = require('../handlers/dietHandler');
-const dietsRouter = require('express').Router();
+dietsRouter.post("/", createDietHandler);
 
-dietsRouter.post('/', createDietHandler);
-
-dietsRouter.get('/', getAllDietsHandler);
+dietsRouter.get("/", getAllDietsHandler);
 
 module.exports = dietsRouter;
