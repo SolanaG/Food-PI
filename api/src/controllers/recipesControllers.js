@@ -1,0 +1,42 @@
+const { Recipe }  = require('../db')
+const { Op } = require("sequelize");
+const {Diet} = require('../db');
+
+// 1
+
+const getAllRecipes = async (name) => {
+    
+    const query = name ? { where: { name: { [Op.iLike]:  `%${name}%`} } }: {};
+    return  Recipe.findAll(query);
+}
+
+// 2
+
+// TODO: Incluir los tipos de dieta asociados
+
+const getRecipesById = async (id) => {   
+    
+    const result = await Recipe.findByPk(id, {include:Diet});
+      console.log('RECIPEE:::',result)
+    return {data: result};
+};
+
+// 3
+
+const createRecipe = async (name, summary, healthScore, steps, diets) => {
+    
+    const result = await Recipe.create({
+        name,
+        summary,
+        healthScore,
+        steps,
+        created: true, 
+    });
+    result.setDiets(diets)
+    console.log('RECIPEE:::',result)
+    return result;
+};
+
+
+
+module.exports =  { getAllRecipes, getRecipesById, createRecipe } 
