@@ -11,8 +11,6 @@ const getAllRecipes = async (name) => {
 
 // 2
 
-// TODO: Incluir los tipos de dieta asociados
-
 const getRecipesById = async (id) => {
   const result = await Recipe.findByPk(id, { include: Diet });
 

@@ -49,6 +49,8 @@ const createRecipeHandler = async (req, res) => {
   const { name, summary, healthScore, steps, diets } = req.body;
 
   try {
+    if (!name || !summary || !healthScore || !steps || !diets)
+      throw Error("Missing data");
     const result = await createRecipe(name, summary, healthScore, steps, diets);
     res.status(201).json(result);
   } catch (error) {
@@ -56,7 +58,7 @@ const createRecipeHandler = async (req, res) => {
   }
 };
 
-// Service o controller?
+// Service
 const apiRecipesMap = (array) =>
   array.map((recipe) => {
     return {
