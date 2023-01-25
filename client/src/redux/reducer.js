@@ -9,7 +9,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_RECIPES:
       return {
         ...state,
-        recipes: [...state.recipes, action.payload],
+        recipes: [...state.recipes, ...action.payload],
       };
     // case DELETE_CHARACTER:
     //   return {

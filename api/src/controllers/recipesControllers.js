@@ -5,7 +5,15 @@ const { Diet } = require("../db");
 // 1
 
 const getAllRecipes = async (name) => {
-  const query = name ? { where: { name: { [Op.iLike]: `%${name}%` } } } : {};
+  const query = name
+    ? {
+        where: {
+          name: { [Op.iLike]: `%${name}%` },
+        },
+        include: Diet,
+      }
+    : {};
+  console.log(query);
   return Recipe.findAll(query);
 };
 

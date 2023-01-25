@@ -8,6 +8,7 @@ export const getRecipes = (queryValue) => {
       const response = await axios.get(`http://localhost:3001/recipes?name=`);
 
       const recipes = response.data;
+      console.log("actions", recipes);
       dispatch({ type: GET_RECIPES, payload: recipes });
     } catch (error) {
       alert(error.message);

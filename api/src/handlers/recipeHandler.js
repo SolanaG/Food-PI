@@ -59,21 +59,28 @@ const createRecipeHandler = async (req, res) => {
 };
 
 // Service
-const apiRecipesMap = (array) =>
-  array.map((recipe) => {
+const apiRecipesMap = (array) => {
+  const arr = array.map((recipe) => {
     return {
       name: recipe.title,
       health_score: recipe.healthScore,
       summary: recipe.summary,
-      steps: recipe.analyzedInstructions,
+      steps: recipe.analyzedInstructions[0]?.steps,
       created: false,
+      diets: recipe.diets,
+      image: recipe.image,
+      dishTypes: recipe.dishTypes,
+      id: recipe.id,
     };
   });
 
+  return arr;
+};
 const getAllApiRecipes = async (name) => {
   const GET_ALL_URL = `recipes/complexSearch`;
   const QUERY_STR = `&addRecipeInformation=true&number=100`;
   const url = BASE_URL + GET_ALL_URL + API_AUTH + QUERY_STR;
+  console.log("url:::", url);
 
   const apiRecipesResults = await axios.get(url);
   let apiRecipesArray = apiRecipesResults.data.results;

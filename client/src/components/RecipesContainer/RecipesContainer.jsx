@@ -4,19 +4,19 @@ import RecipeCard from "../Recipe/RecipeCard";
 
 const RecipesContainer = () => {
   const recipes = useSelector((state) => state.recipes);
-  console.log("RECIPES::::::", recipes);
+
   return (
     <div>
-      {recipes[0]?.length > 0 ? (
+      {recipes?.length > 0 ? (
         <div className={style.container}>
-          {recipes[0].map((recipe, i) => {
-            console.log("mapping recipe", i, recipe);
+          {recipes?.map((recipe, i) => {
             return (
               <RecipeCard
                 key={i}
                 id={recipe.id}
                 image={recipe.image}
                 name={recipe.name}
+                diets={recipe.diets}
                 summary={recipe.summary}
               />
             );
