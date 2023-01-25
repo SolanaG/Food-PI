@@ -1,26 +1,26 @@
-import { ADD_CHARACTER, DELETE_CHARACTER } from "./actions";
+import { GET_RECIPES } from "./actions";
 
 const initialState = {
-  myFavorites: [],
+  recipes: [],
 };
 
-const reducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_CHARACTER:
+    case GET_RECIPES:
       return {
         ...state,
-        myFavorites: [...state.myFavorites, action.payload],
+        recipes: [...state.recipes, action.payload],
       };
-    case DELETE_CHARACTER:
-      return {
-        ...state,
-        myFavorites: state.myFavorites.filter((char) => {
-          return char.id !== action.payload;
-        }),
-      };
+    // case DELETE_CHARACTER:
+    //   return {
+    //     ...state,
+    //     myFavorites: state.recipes.filter((char) => {
+    //       return char.id !== action.payload;
+    //     }),
+    //   };
     default:
       return { ...state };
   }
 };
 
-export default reducer;
+export default rootReducer;

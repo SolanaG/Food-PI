@@ -1,13 +1,5 @@
 .App {
   text-align: center;
-  color: white;
-  background-image: url("./resources/img/table.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  margin-top: 0;
-  padding: 0;
 }
 
 /* .App-logo {

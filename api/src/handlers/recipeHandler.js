@@ -62,7 +62,7 @@ const createRecipeHandler = async (req, res) => {
 const apiRecipesMap = (array) =>
   array.map((recipe) => {
     return {
-      title: recipe.title,
+      name: recipe.title,
       health_score: recipe.healthScore,
       summary: recipe.summary,
       steps: recipe.analyzedInstructions,
