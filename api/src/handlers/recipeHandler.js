@@ -82,9 +82,9 @@ const getAllApiRecipes = async (name) => {
   const QUERY_STR = `&addRecipeInformation=true&number=100`;
   const url = BASE_URL + GET_ALL_URL + API_AUTH + QUERY_STR;
 
-  // const apiRecipesResults = await axios.get(url);
-  // let apiRecipesArray = apiRecipesResults.data.results;
-  let apiRecipesArray = apiRecipeFile.apiRecipesData.results;
+  const apiRecipesResults = await axios.get(url);
+  let apiRecipesArray = apiRecipesResults.data.results;
+  // let apiRecipesArray = apiRecipeFile.apiRecipesData.results;
 
   if (name)
     apiRecipesArray = apiRecipesArray.filter((recipe) =>

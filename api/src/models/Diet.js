@@ -6,11 +6,6 @@ module.exports = (sequelize) => {
   sequelize.define(
     "diet",
     {
-      // id: {
-      //   type: DataTypes.INTEGER,
-      //   primaryKey: true,
-      //   autoIncrement: true,
-      // },
       name: {
         type: DataTypes.ENUM,
         values: [
@@ -19,12 +14,13 @@ module.exports = (sequelize) => {
           "Gluten Free",
           "Whole30",
           "Ketogenic",
-          "Lacto-Vegetarian",
+          "Lacto Vegetarian",
           "Primal",
           "Low FODMAP",
           "Pescetarian",
           "Paleo",
-          "Ovo-Vegetarian",
+          "Ovo Vegetarian",
+          "Lacto Ovo Vegetarian",
         ],
       },
     },

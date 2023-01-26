@@ -25,9 +25,9 @@ module.exports = (sequelize) => {
       steps: {
         type: DataTypes.TEXT,
       },
-      // dishTypes: {
-      //   type: DataTypes.STRING,
-      // },
+      dishTypes: {
+        type: DataTypes.STRING,
+      },
       created: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

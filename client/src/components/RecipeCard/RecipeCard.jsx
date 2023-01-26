@@ -5,14 +5,16 @@ const RecipeCard = ({ name, image, diets }) => {
     <div className={style.card}>
       {/* <p>Id: {id}</p> */}
       <p>Name: {name}</p> <br />
-      Diets:
-      {diets.map((diet, i) => {
-        return (
-          <span key={i}>
-            {diet} <br />
-          </span>
-        );
-      })}
+      <p>
+        Diets:{" "}
+        {diets.map((diet, i) => {
+          return (
+            <span key={i}>
+              {diet} <br />
+            </span>
+          );
+        })}
+      </p>
       <br />
       <img src={image} alt="" />
     </div>

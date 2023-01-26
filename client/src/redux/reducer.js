@@ -3,10 +3,12 @@ import {
   FILTER_BY_DIET,
   SORT_BY_ABC,
   SORT_BY_HEALTH_SCORE,
+  GET_DIETS,
 } from "./actions";
 
 const initialState = {
   recipes: [],
+  diets: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -16,17 +18,47 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         recipes: [...action.payload],
       };
-    case FILTER_BY_DIET:
-      return {};
-    case SORT_BY_ABC:
-      console.log("action:::", action.payload);
+    case GET_DIETS:
       return {
         ...state,
-        recipes: [
-          ...state.recipes.sort((a, b) =>
-            action.payload == 1 ? a.name > b.name : a.name < b.name
-          ),
-        ],
+        diets: [...action.payload],
+      };
+    case FILTER_BY_DIET:
+      const allRecipes = state.recipes;
+      const filtered = allRecipes.filter((r) => {
+        console.log("filterss::", r.diets);
+        // if (typeof r.diets[0] === "string") {
+        return (
+          r.diets.includes(action.payload.toLowerCase()) ||
+          r.diets.includes(action.payload)
+        );
+        // } else {
+        //   return r.diets
+        //     .map((s) => s.name)
+        //     .includes(action.payload.toLowerCase());
+        // }
+      });
+      return {
+        ...state,
+        recipes: filtered,
+      };
+    case SORT_BY_ABC:
+      const sortedRecipes =
+        action.payload === "1"
+          ? state.recipes.sort((a, b) => {
+              if (a.name > b.name) return 1;
+              if (a.name < b.name) return -1;
+              return 0;
+            })
+          : state.recipes.sort((a, b) => {
+              if (a.name > b.name) return -1;
+              if (a.name < b.name) return 1;
+              return 0;
+            });
+      console.log("sorteddddddddd::::", sortedRecipes);
+      return {
+        ...state,
+        recipes: sortedRecipes,
       };
     case SORT_BY_HEALTH_SCORE:
       return {};

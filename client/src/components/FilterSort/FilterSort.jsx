@@ -1,26 +1,47 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { sortByAbc } from "../../redux/actions";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { sortByAbc, dietsFilter, getDiets } from "../../redux/actions";
+import style from "./FilterSort.module.css";
 
 const FilterSort = () => {
   const dispatch = useDispatch();
 
-  const [orderName, setOrderName] = useState("-1");
+  useEffect(() => {
+    dispatch(getDiets(""));
+  }, [dispatch]);
+
+  const diets = useSelector((state) => state.diets);
+  // console.log("state.diets::::", diets);
+  // const [orderAbc, setOrderAbc] = useState("1");
+
+  // const [filteredDiet, setFilteredDiet] = useState("");
 
   const handleInputChange = (ev) => {
-    setOrderName(ev.target.value);
-    console.log("order name:::", orderName);
-    dispatch(sortByAbc(orderName));
+    // setOrderAbc(ev.target.value);
+
+    dispatch(sortByAbc(ev.target.value));
+  };
+
+  const handleDietFilter = (ev) => {
+    // setFilteredDiet(ev.target.value);
+
+    dispatch(dietsFilter(ev.target.value));
   };
 
   return (
-    <div>
-      <select onChange={handleInputChange}>
+    <div className={style.filterContainer}>
+      <select className={style.sortSelect} onChange={handleInputChange}>
         <option value="1">A-z</option>
         <option value="-1">Z-a</option>
       </select>
-      <select>
-        <option>Selecciona una dieta..</option>
+      <br />
+      <select placeholder="Selecciona una dieta.." onChange={handleDietFilter}>
+        <option value="">Selecciona una dieta..</option>
+        {diets.map((diet, i) => (
+          <option value={diet.name} key={i}>
+            {diet.name}
+          </option>
+        ))}
       </select>
     </div>
   );
