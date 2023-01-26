@@ -8,6 +8,7 @@ const {
 } = require("../controllers/recipesControllers");
 const BASE_URL = `https://api.spoonacular.com/`;
 const API_AUTH = `?apiKey=${API_KEY}`;
+const apiRecipeFile = require("../../dbData");
 
 // 1
 
@@ -80,10 +81,10 @@ const getAllApiRecipes = async (name) => {
   const GET_ALL_URL = `recipes/complexSearch`;
   const QUERY_STR = `&addRecipeInformation=true&number=100`;
   const url = BASE_URL + GET_ALL_URL + API_AUTH + QUERY_STR;
-  console.log("url:::", url);
 
-  const apiRecipesResults = await axios.get(url);
-  let apiRecipesArray = apiRecipesResults.data.results;
+  // const apiRecipesResults = await axios.get(url);
+  // let apiRecipesArray = apiRecipesResults.data.results;
+  let apiRecipesArray = apiRecipeFile.apiRecipesData.results;
 
   if (name)
     apiRecipesArray = apiRecipesArray.filter((recipe) =>

@@ -1,9 +1,10 @@
 import style from "./RecipesContainer.module.css";
 import { useSelector } from "react-redux";
-import RecipeCard from "../Recipe/RecipeCard";
+import RecipeCard from "../RecipeCard/RecipeCard";
 
 const RecipesContainer = () => {
   const recipes = useSelector((state) => state.recipes);
+  console.log("state.recipes::::", recipes);
 
   return (
     <div>

@@ -3,17 +3,21 @@ import { useDispatch } from "react-redux";
 import { getRecipes } from "../../redux/actions";
 import style from "./SearchBar.module.css";
 
-export default function SearchBar(props) {
+export default function SearchBar() {
   const [recipeName, setRecipeName] = useState("");
+
   const handleInputChange = (ev) => {
     setRecipeName(ev.target.value);
   };
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRecipes());
+    dispatch(getRecipes(""));
   }, [dispatch]);
 
+  const getRecipesHandler = () => {
+    dispatch(getRecipes(recipeName));
+  };
   return (
     <>
       <div>
@@ -23,12 +27,7 @@ export default function SearchBar(props) {
           value={recipeName}
           onChange={handleInputChange}
         />
-        <button
-          className={style.searchButton}
-          onClick={() => {
-            props.getRecipes(recipeName);
-          }}
-        >
+        <button className={style.searchButton} onClick={getRecipesHandler}>
           BUSCAR
         </button>
       </div>

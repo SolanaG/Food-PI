@@ -7,14 +7,24 @@ const { Diet } = require("../db");
 const getAllRecipes = async (name) => {
   const query = name
     ? {
+        include: Diet,
         where: {
           name: { [Op.iLike]: `%${name}%` },
         },
-        include: Diet,
       }
-    : {};
-  console.log(query);
-  return Recipe.findAll(query);
+    : { include: Diet };
+  const recipes = await Recipe.findAll(query);
+
+  const formatedRecipes = recipes.map((recipe) => {
+    return {
+      ...recipe.dataValues,
+      diets: recipe.diets?.map((diet) => {
+        return diet.name;
+      }),
+    };
+  });
+
+  return formatedRecipes;
 };
 
 // 2
