@@ -62,7 +62,6 @@ export const sortByHealthScore = (healthScore) => {
 export const createNewRecipe = (recipe) => {
   return async function (dispatch) {
     try {
-      console.log("action::", recipe);
       const response = await axios.post(
         "http://localhost:3001/recipes",
         recipe

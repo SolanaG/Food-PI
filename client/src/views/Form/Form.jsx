@@ -37,6 +37,40 @@ const Form = () => {
     // setErrors(validation({ ...form, [property]: value }));
   };
 
+  //   const checkboxHandler = (event) => {
+  //     console.log(event);
+  //     const getValueIndex = form.diets.indexOf(event.target.value);
+  //     if (getValueIndex === -1) {
+  //       setForm({
+  //         ...form,
+  //         diets: [...form.diets, ...event.target.value],
+  //       });
+  //     } else {
+  //       setForm({
+  //         ...form,
+  //         diets: [...form.diets.slice(getValueIndex, 1)],
+  //       });
+  //     }
+  //     // setErrors(validation({ ...form, [property]: value }));
+  //     console.log("dietita:::", form);
+  //   };
+
+  // Add/Remove checked item from list
+  const checkboxHandler = (event) => {
+    console.log(event);
+    let updatedList = [...form.diets];
+    if (event.target.checked) {
+      updatedList = [...form.diets, event.target.value];
+    } else {
+      updatedList.splice(form.diets.indexOf(event.target.value), 1);
+    }
+    setForm({
+      ...form,
+      diets: [...updatedList],
+    });
+  };
+  console.log("dieta;;", form);
+
   const newRecipeMsg = useSelector((state) => state.message);
   const handlerSubmit = (event) => {
     event.preventDefault();
@@ -55,18 +89,19 @@ const Form = () => {
           onChange={changeHandler}
           name="name"
         />
-        {/* <span className={style.warning}>{errors.username}</span> */}
+        {/* <span className={style.warning}>{errors.name}</span> */}
       </div>
       <div>
-        <label>Resumen: </label>
+        <label>Imagen: </label>
         <input
           type="text"
-          value={form.summary}
+          value={form.image}
           onChange={changeHandler}
-          name="summary"
+          name="image"
         />
-        {/* <span className={style.warning}>{errors.username}</span> */}
+        {/* <span className={style.warning}>{errors.image}</span> */}
       </div>
+
       <div>
         <label>Health Score: </label>
         <input
@@ -75,30 +110,42 @@ const Form = () => {
           onChange={changeHandler}
           name="healthScore"
         />
-        {/* <span className={style.warning}>{errors.username}</span> */}
+        {/* <span className={style.warning}>{errors.diets}</span> */}
       </div>
       <div>
+        <label>Resumen: </label>
+        <textarea
+          type="text"
+          value={form.summary}
+          onChange={changeHandler}
+          name="summary"
+        />
+        {/* <span className={style.warning}>{errors.summary}</span> */}
+      </div>
+
+      <div>
         <label>Paso a paso: </label>
-        <input
+        <textarea
           type="text"
           value={form.steps}
           onChange={changeHandler}
           name="steps"
         />
-        {/* <span className={style.warning}>{errors.username}</span> */}
+        {/* <span className={style.warning}>{errors.steps}</span> */}
       </div>
       <div>
         <label>Dietas: </label>
-        <select onChange={changeHandler}>
-          <option value="">Selecciona una dieta..</option>
-          {diets.map((diet, i) => (
-            <option value={diet.id} key={i}>
-              {diet.name}
-            </option>
-          ))}
-        </select>
+        {diets.map((diet, index) => (
+          <div key={index}>
+            <input value={diet.id} type="checkbox" onChange={checkboxHandler} />
+            <span>{diet.name}</span>
+          </div>
+        ))}
       </div>
-      <button type="submit">CREAR</button>
+
+      <button className={style.submit} type="submit">
+        CREAR
+      </button>
     </form>
   );
 };
