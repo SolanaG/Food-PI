@@ -32,7 +32,7 @@ const getAllRecipes = async (name) => {
 const getRecipesById = async (id) => {
   const result = await Recipe.findByPk(id, { include: Diet });
 
-  return { data: result };
+  return result;
 };
 
 // 3

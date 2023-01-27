@@ -4,12 +4,14 @@ import {
   SORT_BY_ABC,
   SORT_BY_HEALTH_SCORE,
   GET_DIETS,
+  GET_DETAIL,
 } from "./actions";
 
 const initialState = {
   allRecipes: [],
   recipes: [],
   diets: [],
+  detail: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -25,12 +27,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         diets: [...action.payload],
       };
+    case GET_DETAIL:
+      return {
+        ...state,
+        detail: { ...action.payload },
+      };
     case FILTER_BY_DIET:
       const allRecipes = state.allRecipes;
       const filtered = allRecipes.filter((r) => {
         return r.diets.includes(action.payload.toLowerCase());
       });
-
       return {
         ...state,
         recipes: [...filtered],
@@ -69,7 +75,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         recipes: [...sortedRecipesHs],
       };
-
     default:
       return { ...state };
   }

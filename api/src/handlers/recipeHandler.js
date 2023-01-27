@@ -33,13 +33,13 @@ const recipeByIdHandler = async (req, res) => {
   const { id } = req.params;
 
   const source = isNaN(id) ? "myDd" : "foodApi";
-
   try {
-    const url = `${BASE_URL}recipes/${id}/information/${API_AUTH}`;
     const result =
-      source === "foodApi" ? await axios.get(url) : await getRecipesById(id);
-
-    res.status(200).json(result.data);
+      source === "foodApi"
+        ? await apiRecipeDetail(id)
+        : await getRecipesById(id);
+    console.log("result:::", result);
+    res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -61,6 +61,15 @@ const createRecipeHandler = async (req, res) => {
 };
 
 // Service
+const apiRecipeDetail = async (id) => {
+  const url = `${BASE_URL}recipes/${id}/information/${API_AUTH}`;
+  const response = await axios.get(url);
+  console.log(response.data);
+  const mappedRecipeDetailArr = apiRecipesMap([response.data]);
+  // console.log("mappedRecipeDetailArr:::", mappedRecipeDetailArr);
+  return mappedRecipeDetailArr[0];
+};
+
 const apiRecipesMap = (array) => {
   const arr = array.map((recipe) => {
     return {
