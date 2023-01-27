@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-// import validation from "./validation";
+import validation from "./validation";
 import style from "./Form.module.css";
 import { createNewRecipe, getDiets } from "../../redux/actions";
 import { useDispatch } from "react-redux";
@@ -21,41 +21,22 @@ const Form = () => {
     diets: [],
   });
 
-  //   const [errors, setErrors] = useState({
-  //     name: "",
-  //     summary: "",
-  //     healthScore: "",
-  //     steps: "",
-  //     diets: [],
-  //   });
+  const [errors, setErrors] = useState({
+    name: "",
+    summary: "",
+    healthScore: "",
+    steps: "",
+    diets: [],
+  });
 
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
 
     setForm({ ...form, [property]: value });
-    // setErrors(validation({ ...form, [property]: value }));
+    setErrors(validation({ ...form, [property]: value }));
   };
 
-  //   const checkboxHandler = (event) => {
-  //     console.log(event);
-  //     const getValueIndex = form.diets.indexOf(event.target.value);
-  //     if (getValueIndex === -1) {
-  //       setForm({
-  //         ...form,
-  //         diets: [...form.diets, ...event.target.value],
-  //       });
-  //     } else {
-  //       setForm({
-  //         ...form,
-  //         diets: [...form.diets.slice(getValueIndex, 1)],
-  //       });
-  //     }
-  //     // setErrors(validation({ ...form, [property]: value }));
-  //     console.log("dietita:::", form);
-  //   };
-
-  // Add/Remove checked item from list
   const checkboxHandler = (event) => {
     console.log(event);
     let updatedList = [...form.diets];
@@ -69,7 +50,6 @@ const Form = () => {
       diets: [...updatedList],
     });
   };
-  console.log("dieta;;", form);
 
   const newRecipeMsg = useSelector((state) => state.message);
   const handlerSubmit = (event) => {
@@ -89,7 +69,7 @@ const Form = () => {
           onChange={changeHandler}
           name="name"
         />
-        {/* <span className={style.warning}>{errors.name}</span> */}
+        <span className={style.warning}>{errors.name}</span>
       </div>
       <div>
         <label>Imagen: </label>
@@ -131,7 +111,7 @@ const Form = () => {
           onChange={changeHandler}
           name="steps"
         />
-        {/* <span className={style.warning}>{errors.steps}</span> */}
+        <span className={style.warning}>{errors.steps}</span>
       </div>
       <div>
         <label>Dietas: </label>
