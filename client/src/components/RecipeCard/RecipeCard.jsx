@@ -1,6 +1,6 @@
 import style from "./RecipeCard.module.css";
 
-const RecipeCard = ({ name, image, diets }) => {
+const RecipeCard = ({ name, image, diets, healthScore }) => {
   return (
     <div className={style.card}>
       {/* <p>Id: {id}</p> */}
@@ -15,6 +15,7 @@ const RecipeCard = ({ name, image, diets }) => {
           );
         })}
       </p>
+      <p>Health Score: {healthScore}</p>
       <br />
       <img src={image} alt="" />
     </div>

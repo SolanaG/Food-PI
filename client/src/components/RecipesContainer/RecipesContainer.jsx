@@ -19,6 +19,7 @@ const RecipesContainer = () => {
                 name={recipe.name}
                 diets={recipe.diets}
                 summary={recipe.summary}
+                healthScore={recipe.health_score}
               />
             );
           })}
