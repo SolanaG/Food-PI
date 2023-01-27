@@ -1,5 +1,14 @@
-/* .warning {
+.warning {
   color: red;
   font-size: small;
   font-weight: 600;
-} */
+}
+
+.formContainer {
+  width: 740px;
+  height: 498px;
+  margin: 0 auto;
+  padding: 1em;
+  box-sizing: border-box;
+  display: grid;
+}

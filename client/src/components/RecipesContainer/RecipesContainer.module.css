@@ -6,3 +6,7 @@
   flex-wrap: wrap;
   gap: 1em;
 }
+
+.link {
+  text-decoration: none;
+}

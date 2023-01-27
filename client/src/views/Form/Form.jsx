@@ -1,84 +1,106 @@
-// import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 // import validation from "./validation";
-// import style from "./Form.module.css";
-// import axios from "axios";
+import style from "./Form.module.css";
+import { createNewRecipe, getDiets } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
-// const Form = () => {
-//   const [form, setForm] = useState({
-//     name: "",
-//     summary: "",
-//     healthScore: "",
-//     steps: "",
-//   });
+const Form = () => {
+  const dispatch = useDispatch();
+  const diets = useSelector((state) => state.diets);
 
-//   const [errors, setErrors] = useState({
-//     name: "",
-//     summary: "",
-//     healthScore: "",
-//     steps: "",
-//   });
+  useEffect(() => {
+    dispatch(getDiets(""));
+  }, [dispatch]);
 
-//   const changeHandler = (event) => {
-//     const property = event.target.name;
-//     const value = event.target.value;
+  const [form, setForm] = useState({
+    name: "",
+    summary: "",
+    healthScore: "",
+    steps: "",
+    diets: [],
+  });
 
-//     setForm({ ...form, [property]: value });
-//     setErrors(validation({ ...form, [property]: value }));
-//   };
+  //   const [errors, setErrors] = useState({
+  //     name: "",
+  //     summary: "",
+  //     healthScore: "",
+  //     steps: "",
+  //     diets: [],
+  //   });
 
-//   const handlerSubmit = (event) => {
-//     event.preventDefault();
-//     axios
-//       .post("http://localhost:3001/recipes", form)
-//       .then((res) => alert(res))
-//       .catch((error) => alert(error));
-//   };
+  const changeHandler = (event) => {
+    const property = event.target.name;
+    const value = event.target.value;
 
-//   return (
-//     <form onSubmit={handlerSubmit}>
-//       <div>
-//         <label>Name: </label>
-//         <input
-//           type="text"
-//           value={form.name}
-//           onChange={changeHandler}
-//           name="name"
-//         />
-//         <span className={style.warning}>{errors.username}</span>
-//       </div>
-//       <div>
-//         <label>Summary: </label>
-//         <input
-//           type="text"
-//           value={form.summary}
-//           onChange={changeHandler}
-//           name="summary"
-//         />
-//         <span className={style.warning}>{errors.username}</span>
-//       </div>
-//       <div>
-//         <label>Health Score: </label>
-//         <input
-//           type="number"
-//           value={form.healthScore}
-//           onChange={changeHandler}
-//           name="healthScore"
-//         />
-//         <span className={style.warning}>{errors.username}</span>
-//       </div>
-//       <div>
-//         <label>Steps: </label>
-//         <input
-//           type="text"
-//           value={form.steps}
-//           onChange={changeHandler}
-//           name="steps"
-//         />
-//         <span className={style.warning}>{errors.username}</span>
-//       </div>
-//       <button type="submit">SUBMIT</button>
-//     </form>
-//   );
-// };
+    setForm({ ...form, [property]: value });
+    // setErrors(validation({ ...form, [property]: value }));
+  };
 
-// export default Form;
+  const newRecipeMsg = useSelector((state) => state.message);
+  const handlerSubmit = (event) => {
+    event.preventDefault();
+    dispatch(createNewRecipe(form));
+    alert(newRecipeMsg);
+  };
+
+  return (
+    <form className={style.formContainer} onSubmit={handlerSubmit}>
+      <h2>Este es el form</h2>
+      <div>
+        <label>Nombre: </label>
+        <input
+          type="text"
+          value={form.name}
+          onChange={changeHandler}
+          name="name"
+        />
+        {/* <span className={style.warning}>{errors.username}</span> */}
+      </div>
+      <div>
+        <label>Resumen: </label>
+        <input
+          type="text"
+          value={form.summary}
+          onChange={changeHandler}
+          name="summary"
+        />
+        {/* <span className={style.warning}>{errors.username}</span> */}
+      </div>
+      <div>
+        <label>Health Score: </label>
+        <input
+          type="number"
+          value={form.healthScore}
+          onChange={changeHandler}
+          name="healthScore"
+        />
+        {/* <span className={style.warning}>{errors.username}</span> */}
+      </div>
+      <div>
+        <label>Paso a paso: </label>
+        <input
+          type="text"
+          value={form.steps}
+          onChange={changeHandler}
+          name="steps"
+        />
+        {/* <span className={style.warning}>{errors.username}</span> */}
+      </div>
+      <div>
+        <label>Dietas: </label>
+        <select onChange={changeHandler}>
+          <option value="">Selecciona una dieta..</option>
+          {diets.map((diet, i) => (
+            <option value={diet.id} key={i}>
+              {diet.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <button type="submit">CREAR</button>
+    </form>
+  );
+};
+
+export default Form;

@@ -2,6 +2,7 @@ import style from "./RecipesContainer.module.css";
 import { useSelector } from "react-redux";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import { Link } from "react-router-dom";
+
 const RecipesContainer = () => {
   const recipes = useSelector((state) => state.recipes);
   return (
@@ -11,7 +12,7 @@ const RecipesContainer = () => {
           {recipes?.map((recipe, i) => {
             const detailRoute = `/detail/${recipe.id}`;
             return (
-              <Link to={detailRoute} key={i}>
+              <Link className={style.link} to={detailRoute} key={i}>
                 <RecipeCard
                   key={i}
                   id={recipe.id}

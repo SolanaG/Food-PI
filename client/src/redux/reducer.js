@@ -5,6 +5,7 @@ import {
   SORT_BY_HEALTH_SCORE,
   GET_DIETS,
   GET_DETAIL,
+  CREATE_NEW_RECIPE,
 } from "./actions";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   recipes: [],
   diets: [],
   detail: {},
+  message: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -74,6 +76,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         recipes: [...sortedRecipesHs],
+      };
+    case CREATE_NEW_RECIPE:
+      return {
+        ...state,
+        message: action.payload,
       };
     default:
       return { ...state };

@@ -8,22 +8,22 @@ const Detail = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(getDetail(id));
-  }, [dispatch]);
+  }, []);
 
   const recipeDetail = useSelector((state) => state.detail);
-  console.log("RECIPE DETAIL::", recipeDetail);
+
   return (
     <div>
       {Object.keys(recipeDetail).length ? (
         <>
           <h1> Este es el detail </h1>
           <div>
-            <p>Name: {recipeDetail.name}</p>
+            <p>Nombre: {recipeDetail.name}</p>
             <br />
             <img src={recipeDetail.image} alt="" />
             <br />
             <p>
-              Diets:{" "}
+              Dietas:{" "}
               {recipeDetail.diets.map((diet, i) => {
                 return (
                   <span key={i}>
@@ -33,7 +33,7 @@ const Detail = () => {
               })}
             </p>
             <p>Health Score: {recipeDetail.health_score}</p>
-            <p>Dishtypes: {recipeDetail.dishTypes}</p>
+            <p>Tipo de plato: {recipeDetail.dishTypes}</p>
             <span>Resumen:</span> {recipeDetail.summary}
             {/* <p>Paso a paso: {recipeDetail.steps}</p> */}
           </div>

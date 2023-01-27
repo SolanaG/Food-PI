@@ -3,10 +3,9 @@ import style from "./RecipeCard.module.css";
 const RecipeCard = ({ name, image, diets, healthScore }) => {
   return (
     <div className={style.card}>
-      {/* <p>Id: {id}</p> */}
-      <p>Name: {name}</p> <br />
+      <p>Nombre: {name}</p> <br />
       <p>
-        Diets:{" "}
+        Dietas:{" "}
         {diets.map((diet, i) => {
           return (
             <span key={i}>

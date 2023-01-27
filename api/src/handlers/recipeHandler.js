@@ -22,7 +22,6 @@ const allRecipesHandler = async (req, res) => {
 
     res.status(200).json([...dbRecipes, ...formatedApiRecipes]);
   } catch (error) {
-    console.log("error:::", error);
     res.status(400).json({ error: error.message });
   }
 };
@@ -38,7 +37,7 @@ const recipeByIdHandler = async (req, res) => {
       source === "foodApi"
         ? await apiRecipeDetail(id)
         : await getRecipesById(id);
-    console.log("result:::", result);
+
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -53,8 +52,8 @@ const createRecipeHandler = async (req, res) => {
   try {
     if (!name || !summary || !healthScore || !steps || !diets)
       throw Error("Missing data");
-    const result = await createRecipe(name, summary, healthScore, steps, diets);
-    res.status(201).json(result);
+    await createRecipe(name, summary, healthScore, steps, diets);
+    res.status(201).send("Receta creada!");
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -66,7 +65,7 @@ const apiRecipeDetail = async (id) => {
   const response = await axios.get(url);
   console.log(response.data);
   const mappedRecipeDetailArr = apiRecipesMap([response.data]);
-  // console.log("mappedRecipeDetailArr:::", mappedRecipeDetailArr);
+
   return mappedRecipeDetailArr[0];
 };
 

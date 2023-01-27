@@ -32,7 +32,12 @@ const getAllRecipes = async (name) => {
 const getRecipesById = async (id) => {
   const result = await Recipe.findByPk(id, { include: Diet });
 
-  return result;
+  return {
+    ...result.dataValues,
+    diets: result.diets?.map((diet) => {
+      return diet.name;
+    }),
+  };
 };
 
 // 3
@@ -46,8 +51,6 @@ const createRecipe = async (name, summary, healthScore, steps, diets) => {
     created: true,
   });
   result.setDiets(diets);
-
-  return result;
 };
 
 module.exports = { getAllRecipes, getRecipesById, createRecipe };
