@@ -37,7 +37,7 @@
 img {
   height: 230px;
   width: auto; /*maintain aspect ratio*/
-  max-width: 500px;
+  max-width: 340px;
   border-radius: 5px;
   margin-bottom: 1%;
 }

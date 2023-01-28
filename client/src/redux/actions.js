@@ -68,7 +68,9 @@ export const createNewRecipe = (recipe) => {
       );
       const message = response.data;
       dispatch({ type: CREATE_NEW_RECIPE, payload: message });
+      alert(message);
     } catch (error) {
+      alert("No pudimos crear la Receta.");
       dispatch({ type: CREATE_NEW_RECIPE, payload: error.message });
     }
   };

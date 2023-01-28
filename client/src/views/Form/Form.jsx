@@ -4,7 +4,7 @@ import validation from "./validation";
 import style from "./Form.module.css";
 import { createNewRecipe, getDiets } from "../../redux/actions";
 import { useDispatch } from "react-redux";
-
+import { useHistory } from "react-router-dom";
 const Form = () => {
   const dispatch = useDispatch();
   const diets = useSelector((state) => state.diets);
@@ -18,6 +18,7 @@ const Form = () => {
     summary: "",
     healthScore: "",
     steps: "",
+    image: "",
     diets: [],
   });
 
@@ -51,12 +52,12 @@ const Form = () => {
     });
     setErrors(validation({ ...form, diets: [...updatedList] }));
   };
-
-  const newRecipeMsg = useSelector((state) => state.message);
+  const history = useHistory();
+  // const newRecipeMsg = useSelector((state) => state.message);
   const handlerSubmit = (event) => {
     event.preventDefault();
     dispatch(createNewRecipe(form));
-    alert(newRecipeMsg);
+    history.push("/home");
   };
 
   return (

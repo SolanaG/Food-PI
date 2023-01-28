@@ -47,14 +47,18 @@ const recipeByIdHandler = async (req, res) => {
 // 3
 
 const createRecipeHandler = async (req, res) => {
-  const { name, summary, healthScore, steps, diets } = req.body;
+  const { name, summary, healthScore, steps, diets, image } = req.body;
+  console.log("body:::", req.body);
 
   try {
     if (!name || !summary || !healthScore || !steps || !diets)
       throw Error("Missing data");
-    await createRecipe(name, summary, healthScore, steps, diets);
+    console.log("image:::", image);
+
+    await createRecipe(name, summary, healthScore, steps, diets, image);
     res.status(201).send("Receta creada!");
   } catch (error) {
+    console.log(error);
     res.status(404).json({ error: error.message });
   }
 };
