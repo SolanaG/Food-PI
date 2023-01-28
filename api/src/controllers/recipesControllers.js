@@ -42,11 +42,19 @@ const getRecipesById = async (id) => {
 
 // 3
 
-const createRecipe = async (name, summary, healthScore, steps, diets) => {
+const createRecipe = async (
+  name,
+  summary,
+  healthScore,
+  steps,
+  image,
+  diets
+) => {
   const result = await Recipe.create({
     name,
     summary,
-    healthScore,
+    health_score: healthScore,
+    image,
     steps,
     created: true,
   });

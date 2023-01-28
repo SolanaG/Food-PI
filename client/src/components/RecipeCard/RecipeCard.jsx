@@ -3,20 +3,24 @@ import style from "./RecipeCard.module.css";
 const RecipeCard = ({ name, image, diets, healthScore }) => {
   return (
     <div className={style.card}>
-      <p>Nombre: {name}</p> <br />
-      <p>
-        Dietas:{" "}
+      <h3>{name}</h3> <br />
+      {/* <span>Dietas:</span><br /> */}
+      <div className={style.dietsDiv}>
         {diets.map((diet, i) => {
           return (
-            <span key={i}>
-              {diet} <br />
-            </span>
+            <div className={style.dietDiv} key={i}>
+              <input type="checkbox" checked disabled />
+              <span>{diet}</span>
+            </div>
           );
         })}
-      </p>
-      <p>Health Score: {healthScore}</p>
+      </div>
+      <h5>Health Score: {healthScore}</h5>
       <br />
-      <img src={image} alt="" />
+      <div className={style.imgDiv}>
+        <div></div>
+        <img src={image} alt="" />
+      </div>
     </div>
   );
 };

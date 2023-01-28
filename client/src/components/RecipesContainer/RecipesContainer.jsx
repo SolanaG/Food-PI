@@ -10,6 +10,7 @@ const RecipesContainer = () => {
       {recipes?.length > 0 ? (
         <div className={style.container}>
           {recipes?.map((recipe, i) => {
+            console.log(recipes);
             const detailRoute = `/detail/${recipe.id}`;
             return (
               <Link className={style.link} to={detailRoute} key={i}>
