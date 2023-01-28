@@ -9,6 +9,7 @@ export default function validation(form) {
     errors.healthScore = "El valor de Health Score debe estar entre 0 y 100";
   if (!form.steps)
     errors.steps = "Por favor ingresa el paso a paso de tu receta";
-
+  if (!form.diets.length)
+    errors.diets = "Por favor seleccioná al menos 1 dieta";
   return errors;
 }

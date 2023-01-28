@@ -49,6 +49,7 @@ const Form = () => {
       ...form,
       diets: [...updatedList],
     });
+    setErrors(validation({ ...form, diets: [...updatedList] }));
   };
 
   const newRecipeMsg = useSelector((state) => state.message);
@@ -61,9 +62,10 @@ const Form = () => {
   return (
     <form className={style.formContainer} onSubmit={handlerSubmit}>
       <h2>Este es el form</h2>
-      <div>
+      <div className={style.inputDiv}>
         <label>Nombre: </label>
         <input
+          className={style.input}
           type="text"
           value={form.name}
           onChange={changeHandler}
@@ -71,7 +73,7 @@ const Form = () => {
         />
         <span className={style.warning}>{errors.name}</span>
       </div>
-      <div>
+      <div className={style.inputDiv}>
         <label>Imagen: </label>
         <input
           type="text"
@@ -82,50 +84,54 @@ const Form = () => {
         {/* <span className={style.warning}>{errors.image}</span> */}
       </div>
 
-      <div>
-        <label>Health Score: </label>
+      <div className={style.inputDiv}>
+        <label>Health Score:</label>
         <input
           type="number"
           value={form.healthScore}
           onChange={changeHandler}
           name="healthScore"
         />
-        {/* <span className={style.warning}>{errors.diets}</span> */}
+        <span className={style.warning}>{errors.healthScore}</span>
       </div>
-      <div>
+      <div className={style.textAreaDiv}>
         <label>Resumen: </label>
         <textarea
+          rows="15"
           type="text"
+          placeholder="Ingresa una descripción"
           value={form.summary}
           onChange={changeHandler}
           name="summary"
         />
-        {/* <span className={style.warning}>{errors.summary}</span> */}
+        <span className={style.warning}>{errors.summary}</span>
       </div>
 
-      <div>
+      <div className={style.textAreaDiv}>
         <label>Paso a paso: </label>
         <textarea
-          type="text"
+          rows="15"
+          placeholder="Ingresa los pasos"
           value={form.steps}
           onChange={changeHandler}
           name="steps"
         />
         <span className={style.warning}>{errors.steps}</span>
       </div>
-      <div>
+      <div className={style.checkboxDiv}>
         <label>Dietas: </label>
         {diets.map((diet, index) => (
-          <div key={index}>
+          <div key={index} className={style.checkbox}>
             <input value={diet.id} type="checkbox" onChange={checkboxHandler} />
             <span>{diet.name}</span>
           </div>
         ))}
       </div>
-
-      <button className={style.submit} type="submit">
-        CREAR
-      </button>
+      <div className={style.submitDiv}>
+        <button className={style.submit} type="submit">
+          CREAR
+        </button>
+      </div>
     </form>
   );
 };
