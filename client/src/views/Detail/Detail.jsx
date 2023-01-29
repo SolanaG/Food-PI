@@ -34,8 +34,19 @@ const Detail = () => {
             </p>
             <p>Health Score: {recipeDetail.health_score}</p>
             <p>Tipo de plato: {recipeDetail.dishTypes}</p>
-            <span>Resumen:</span> {recipeDetail.summary}
-            {/* <p>Paso a paso: {recipeDetail.steps}</p> */}
+            <span>Resumen:</span> {recipeDetail.summary.replace(/<[^>]+>/g, "")}
+            <br />
+            <>
+              Paso a paso:{" "}
+              {typeof recipeDetail.steps === "string"
+                ? recipeDetail.steps
+                : recipeDetail.steps.map((step, i) => (
+                    <div key={i}>
+                      <h5>STEP {step.number}:</h5>
+                      <span>{step.step}</span>
+                    </div>
+                  ))}
+            </>
           </div>
         </>
       ) : (

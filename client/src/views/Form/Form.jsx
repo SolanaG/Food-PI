@@ -71,6 +71,7 @@ const Form = () => {
           value={form.name}
           onChange={changeHandler}
           name="name"
+          required
         />
         <span className={style.warning}>{errors.name}</span>
       </div>
@@ -81,6 +82,7 @@ const Form = () => {
           value={form.image}
           onChange={changeHandler}
           name="image"
+          required
         />
         {/* <span className={style.warning}>{errors.image}</span> */}
       </div>
@@ -92,6 +94,7 @@ const Form = () => {
           value={form.healthScore}
           onChange={changeHandler}
           name="healthScore"
+          required
         />
         <span className={style.warning}>{errors.healthScore}</span>
       </div>
@@ -104,6 +107,7 @@ const Form = () => {
           value={form.summary}
           onChange={changeHandler}
           name="summary"
+          required
         />
         <span className={style.warning}>{errors.summary}</span>
       </div>
@@ -116,6 +120,7 @@ const Form = () => {
           value={form.steps}
           onChange={changeHandler}
           name="steps"
+          required
         />
         <span className={style.warning}>{errors.steps}</span>
       </div>
@@ -123,7 +128,12 @@ const Form = () => {
         <label>Dietas: </label>
         {diets.map((diet, index) => (
           <div key={index} className={style.checkbox}>
-            <input value={diet.id} type="checkbox" onChange={checkboxHandler} />
+            <input
+              value={diet.id}
+              type="checkbox"
+              onChange={checkboxHandler}
+              required
+            />
             <span>{diet.name}</span>
           </div>
         ))}
