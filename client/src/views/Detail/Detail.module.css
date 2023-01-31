@@ -1,0 +1,69 @@
+body {
+  background-image: url("../../resources/img/fondo-detail.jpg");
+}
+
+.detailContainer {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: rgb(54, 52, 52);
+  font-weight: 540;
+  /* display: flex;
+  flex-direction: row;
+  text-align: left; */
+  /* background-color: rgba(0, 0, 0, 0.5); */
+
+  margin-left: 5%;
+}
+.opacityContainer {
+  height: 100rem;
+  /* width: 100rem; */
+  /* padding-left: 5%; */
+  background-color: rgba(256, 256, 256, 0.85);
+  /* position: absolute; */
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+.name {
+  margin-top: 50px;
+  font-weight: bold;
+  color: rgb(54, 52, 52);
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.imageDetail {
+  box-shadow: 0 0 6px rgb(0 0 0 / 50%);
+  border-radius: 3px;
+  margin: 0px 10px 10px 0px;
+  /* width: 500px;
+  height: 300px; */
+}
+
+.firstContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.secondContainer {
+  display: flex;
+  flex-direction: row;
+  width: 75%;
+}
+
+.dietAndDishDetail input {
+  width: min-content;
+}
+.healthAndDishType {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+.dietAndDishDiv {
+  /* width: min-content; */
+  display: flex;
+  flex-direction: row;
+  /* align-items: flex-start; */
+  width: 100%;
+  justify-content: space-around;
+}

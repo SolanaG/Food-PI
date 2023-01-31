@@ -75,6 +75,7 @@ const apiRecipeDetail = async (id) => {
 
 const apiRecipesMap = (array) => {
   const arr = array.map((recipe) => {
+    console.log(recipe.dishTypes);
     return {
       name: recipe.title,
       health_score: recipe.healthScore,

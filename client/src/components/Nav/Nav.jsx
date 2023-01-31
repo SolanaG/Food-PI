@@ -9,7 +9,7 @@ const Nav = () => {
           HOME
         </Link>
         <Link className={style.links} to="/create">
-          FORM
+          CREA TU RECETA
         </Link>
       </div>
     </div>

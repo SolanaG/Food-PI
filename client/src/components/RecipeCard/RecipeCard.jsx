@@ -4,7 +4,6 @@ const RecipeCard = ({ name, image, diets, healthScore }) => {
   return (
     <div className={style.card}>
       <h3>{name}</h3> <br />
-      {/* <span>Dietas:</span><br /> */}
       <div className={style.dietsDiv}>
         {diets.map((diet, i) => {
           return (

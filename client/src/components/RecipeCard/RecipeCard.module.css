@@ -4,9 +4,10 @@
   border-radius: 10px;
   width: 350px;
   height: 500px;
-  color: black;
+  color: rgb(54, 52, 52);
+  background-color: white;
   padding: 2%;
-
+  box-shadow: 0 0 6px rgb(0 0 0 / 15%);
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -16,6 +17,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 0 6px rgb(0 0 0 / 50%);
 }
 
 .dietsDiv {
@@ -34,10 +36,12 @@
 .dietsDiv span {
   margin-right: 5px;
 }
+
 img {
-  height: 230px;
-  width: auto; /*maintain aspect ratio*/
+  display: block;
   max-width: 340px;
+  height: auto;
+  width: auto;
   border-radius: 5px;
   margin-bottom: 1%;
 }

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+
 const RecipesContainer = () => {
   const recipes = useSelector((state) => state.recipes);
 
@@ -54,12 +55,15 @@ const RecipesContainer = () => {
         <button onClick={handlePreviousPage}> Anterior </button>
         <button onClick={handleNextPage}>Siguiente</button>
       </div>
-      <div>
-        <p>
-          Pagina {page}. Desde {firstIndex} hasta{" "}
-          {lastIndex > recipes.length ? recipes.length : lastIndex} de{" "}
-          {recipes.length} recetas.
-        </p>
+      <div className={style.paginationData}>
+        <div>
+          <p>Página {page}</p>
+          <p>
+            De {firstIndex} a{" "}
+            {lastIndex > recipes.length ? recipes.length : lastIndex} de{" "}
+            {recipes.length} Recetas
+          </p>
+        </div>
       </div>
     </div>
   );

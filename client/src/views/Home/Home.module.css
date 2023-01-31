@@ -1,1 +1,14 @@
-
+.image {
+  height: 100px;
+  width: auto;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.homeBody {
+  padding-top: 2%;
+  /* display: flex; */
+  /* justify-content: center; */
+  background-color: rgba(256, 256, 256, 0.85);
+}

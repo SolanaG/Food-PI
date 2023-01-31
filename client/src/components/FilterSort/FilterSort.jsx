@@ -37,7 +37,7 @@ const FilterSort = () => {
       </select>
       <br />
       <select className={style.filterSelect} onChange={handleDietFilter}>
-        <option value="">Selecciona una dieta..</option>
+        <option value="dietFilter">Selecciona una dieta..</option>
         {diets.map((diet, i) => (
           <option value={diet.name} key={i}>
             {diet.name}

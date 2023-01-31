@@ -1,5 +1,4 @@
 .container {
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: row;
   border-radius: 15px;
@@ -23,4 +22,16 @@
 
 button {
   margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  align-items: center;
+  color: white;
+  background-color: #df3131;
+  border: 1px solid #df3131;
+}
+
+.paginationData {
+  display: flex;
+  justify-content: center;
+  color: rgb(54, 52, 52);
 }

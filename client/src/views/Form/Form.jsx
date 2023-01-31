@@ -53,7 +53,7 @@ const Form = () => {
     setErrors(validation({ ...form, diets: [...updatedList] }));
   };
   const history = useHistory();
-  // const newRecipeMsg = useSelector((state) => state.message);
+
   const handlerSubmit = (event) => {
     event.preventDefault();
     dispatch(createNewRecipe(form));
@@ -62,7 +62,6 @@ const Form = () => {
 
   return (
     <form className={style.formContainer} onSubmit={handlerSubmit}>
-      <h2>Este es el form</h2>
       <div className={style.inputDiv}>
         <label>Nombre: </label>
         <input
@@ -84,7 +83,6 @@ const Form = () => {
           name="image"
           required
         />
-        {/* <span className={style.warning}>{errors.image}</span> */}
       </div>
 
       <div className={style.inputDiv}>

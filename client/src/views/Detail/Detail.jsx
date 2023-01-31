@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getDetail } from "../../redux/actions";
 import { useParams } from "react-router-dom";
+import style from "./Detail.module.css";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -13,31 +14,63 @@ const Detail = () => {
   const recipeDetail = useSelector((state) => state.detail);
 
   return (
-    <div>
-      {Object.keys(recipeDetail).length ? (
-        <>
-          <h1> Este es el detail </h1>
-          <div>
-            <p>Nombre: {recipeDetail.name}</p>
+    <div className={style.opacityContainer}>
+      <div className={style.detailContainer}>
+        {Object.keys(recipeDetail).length ? (
+          <>
+            <div className={style.firstContainer}>
+              <h3 className={style.name}>{recipeDetail.name}</h3>
+              <div className={style.secondContainer}>
+                <div>
+                  <img
+                    className={style.imageDetail}
+                    src={recipeDetail.image}
+                    alt="cargando imagen"
+                  />
+                  <div className={style.healthAndDishType}>
+                    <h4>Ranking Saludable: </h4>{" "}
+                    <p>
+                      <b>{recipeDetail.health_score}</b>
+                    </p>
+                  </div>
+                </div>
+                <div className={style.dietAndDishDiv}>
+                  <div>
+                    <h4> Dietas:</h4> <br />
+                    {recipeDetail.diets.map((diet, i) => {
+                      return (
+                        <div key={i} className={style.dietAndDishDetail}>
+                          <input type="checkbox" checked disabled />
+                          <span>
+                            {diet} <br />
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className={style.dishType}>
+                    <h4>Tipo de plato: </h4>{" "}
+                    {recipeDetail.dishTypes?.map((dishType, i) => {
+                      return (
+                        <div key={i} className={style.dietAndDishDetail}>
+                          <input type="checkbox" checked disabled />
+                          <span>
+                            {dishType} <br />
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4>Resumen:</h4>
+              {recipeDetail.summary.replace(/<[^>]+>/g, "")}
+            </div>
             <br />
-            <img src={recipeDetail.image} alt="" />
-            <br />
-            <p>
-              Dietas:{" "}
-              {recipeDetail.diets.map((diet, i) => {
-                return (
-                  <span key={i}>
-                    {diet} <br />
-                  </span>
-                );
-              })}
-            </p>
-            <p>Health Score: {recipeDetail.health_score}</p>
-            <p>Tipo de plato: {recipeDetail.dishTypes}</p>
-            <span>Resumen:</span> {recipeDetail.summary.replace(/<[^>]+>/g, "")}
-            <br />
-            <>
-              Paso a paso:{" "}
+            <div className={style.stepscontainer}>
+              <h4> Paso a paso:</h4>{" "}
               {typeof recipeDetail.steps === "string"
                 ? recipeDetail.steps
                 : recipeDetail.steps.map((step, i) => (
@@ -46,12 +79,12 @@ const Detail = () => {
                       <span>{step.step}</span>
                     </div>
                   ))}
-            </>
-          </div>
-        </>
-      ) : (
-        <p>Cargando Detalle...</p>
-      )}
+            </div>
+          </>
+        ) : (
+          <p>Cargando Detalle...</p>
+        )}
+      </div>
     </div>
   );
 };

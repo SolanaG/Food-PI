@@ -1,4 +1,8 @@
 .landing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: white;
   background-image: url("../../resources/img/table.jpg");
@@ -8,10 +12,42 @@
   height: 100vh;
 }
 
+img {
+  max-width: 250px !important;
+}
+
+.logo {
+  background-color: #997573;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 60px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding: 40px 70px;
+  opacity: 0.9;
+  width: 20%;
+}
+
 .link {
-  text-decoration: none;
+  text-decoration: none !important;
   color: white;
   font-weight: bold;
-  padding-right: 10px;
   align-items: center;
+}
+
+.color1 {
+  color: #4c3243;
+}
+.color2 {
+  color: #694853;
+}
+.color3 {
+  color: #997573;
+}
+.color4 {
+  color: #caa4a2;
+}
+.color5 {
+  color: #d1c1b0;
 }

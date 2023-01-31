@@ -5,26 +5,23 @@
 }
 
 .formContainer {
-  /* margin: 0 auto; */
   padding: 1em;
   box-sizing: border-box;
-  background-color: aquamarine;
+  background-color: #997573;
   display: flex;
   flex-direction: column;
   align-items: left;
   padding-left: 10%;
+  color: white;
 }
 .inputDiv {
   display: flex;
   flex-direction: column;
   padding: 10px;
   align-items: left;
-  /* margin: 20px; */
 }
 label {
-  /* width: 50%; */
   margin-bottom: 5px;
-  /* margin: 20px; */
   text-align: start;
   margin-top: 15px;
 }
@@ -32,20 +29,16 @@ label {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  /* margin: 20px; */
   align-items: left;
 }
 input {
   padding: 10px 20px;
-  /* margin: 10px; */
   width: 60%;
-  /* float: center; */
   border: 1px solid gray;
   border-radius: 10px;
 }
 textarea {
   padding: 10px 20px;
-  /* margin: 10px; */
   border: 1px solid gray;
   border-radius: 10px;
   width: 60%;
@@ -58,23 +51,22 @@ textarea {
 .checkboxDiv .checkbox {
   display: flex;
   flex-direction: row;
-  /* margin: 0 auto; */
 }
 .checkboxDiv .checkbox input {
   width: 5%;
 }
 
-/* .checkboxDiv label {
-  display: flex;
-  flex-direction: row;
-} */
 .submit {
   padding: 10px;
   margin-top: 30px;
   width: 20%;
-  border: 1px solid gray;
-  border-radius: 5px;
+  border-radius: 10px;
+  color: white;
+  background-color: #df3131;
+  border: 1px solid #df3131;
+  font-weight: bold;
 }
 .submitDiv {
-  float: left;
+  justify-content: center;
+  align-items: center;
 }
