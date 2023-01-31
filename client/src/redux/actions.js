@@ -18,7 +18,7 @@ export const getRecipes = (queryValue) => {
       const recipes = response.data;
       dispatch({ type: GET_RECIPES, payload: recipes });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data.error);
     }
   };
 };
@@ -30,7 +30,7 @@ export const getDiets = () => {
       const diets = response.data;
       dispatch({ type: GET_DIETS, payload: diets });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data.error);
     }
   };
 };
@@ -42,7 +42,7 @@ export const getDetail = (id) => {
       const detail = response.data;
       dispatch({ type: GET_DETAIL, payload: detail });
     } catch (error) {
-      alert(error.message);
+      alert(error.response.data.error);
     }
   };
 };

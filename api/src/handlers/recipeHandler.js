@@ -8,7 +8,7 @@ const {
 } = require("../controllers/recipesControllers");
 const BASE_URL = `https://api.spoonacular.com/`;
 const API_AUTH = `?apiKey=${API_KEY}`;
-const apiRecipeFile = require("../../dbData");
+// const apiRecipeFile = require("../../dbData");
 
 // 1
 
@@ -20,8 +20,12 @@ const allRecipesHandler = async (req, res) => {
 
     const dbRecipes = await getAllRecipes(name);
 
+    if (!formatedApiRecipes.length || !dbRecipes.length)
+      throw Error("No se encontraron recetas con ese nombre");
+
     res.status(200).json([...dbRecipes, ...formatedApiRecipes]);
   } catch (error) {
+    console.log("error::", error);
     res.status(400).json({ error: error.message });
   }
 };
@@ -73,7 +77,7 @@ const createRecipeHandler = async (req, res) => {
 const apiRecipeDetail = async (id) => {
   const url = `${BASE_URL}recipes/${id}/information/${API_AUTH}`;
   const response = await axios.get(url);
-  console.log(response.data);
+
   const mappedRecipeDetailArr = apiRecipesMap([response.data]);
 
   return mappedRecipeDetailArr[0];
@@ -81,7 +85,6 @@ const apiRecipeDetail = async (id) => {
 
 const apiRecipesMap = (array) => {
   const arr = array.map((recipe) => {
-    console.log(recipe.dishTypes);
     return {
       name: recipe.title,
       health_score: recipe.healthScore,
@@ -102,9 +105,11 @@ const getAllApiRecipes = async (name) => {
   const QUERY_STR = `&addRecipeInformation=true&number=100`;
   const url = BASE_URL + GET_ALL_URL + API_AUTH + QUERY_STR;
 
-  // const apiRecipesResults = await axios.get(url);
-  // let apiRecipesArray = apiRecipesResults.data.results;
-  let apiRecipesArray = apiRecipeFile.apiRecipesData.results;
+  const apiRecipesResults = await axios.get(url);
+  let apiRecipesArray = apiRecipesResults.data.results;
+
+  // uso interno para pruebas
+  // let apiRecipesArray = apiRecipeFile.apiRecipesData.results;
 
   if (name)
     apiRecipesArray = apiRecipesArray.filter((recipe) =>

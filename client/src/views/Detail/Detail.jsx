@@ -12,7 +12,7 @@ const Detail = () => {
   }, [dispatch, id]);
 
   const recipeDetail = useSelector((state) => state.detail);
-  console.log(recipeDetail);
+
   return (
     <div className={style.opacityContainer}>
       <div className={style.detailContainer}>
@@ -53,8 +53,9 @@ const Detail = () => {
                     {typeof recipeDetail.dishTypes === "string"
                       ? recipeDetail.dishTypes
                       : recipeDetail.dishTypes.map((dishType, i) => (
-                          <div key={i}>
-                            <p>dishType</p>
+                          <div key={i} className={style.dietAndDishDetail}>
+                            <input type="checkbox" checked disabled />
+                            <span>{dishType}</span>
                           </div>
                         ))}
                   </div>

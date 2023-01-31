@@ -42,7 +42,6 @@ const Form = () => {
   };
 
   const checkboxHandler = (event) => {
-    console.log(event);
     let updatedList = [...form.diets];
     if (event.target.checked) {
       updatedList = [...form.diets, event.target.value];
