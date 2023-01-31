@@ -17,6 +17,7 @@ const Form = () => {
     name: "",
     summary: "",
     healthScore: "",
+    dishTypes: [],
     steps: "",
     image: "",
     diets: [],
@@ -33,8 +34,10 @@ const Form = () => {
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-
-    setForm({ ...form, [property]: value });
+    setForm({
+      ...form,
+      [property]: value,
+    });
     setErrors(validation({ ...form, [property]: value }));
   };
 
@@ -86,12 +89,23 @@ const Form = () => {
       </div>
 
       <div className={style.inputDiv}>
-        <label>Health Score:</label>
+        <label>Ranking Saludable:</label>
         <input
           type="number"
           value={form.healthScore}
           onChange={changeHandler}
           name="healthScore"
+          required
+        />
+        <span className={style.warning}>{errors.healthScore}</span>
+      </div>
+      <div className={style.inputDiv}>
+        <label>Tipo de Plato:</label>
+        <input
+          type="text"
+          value={form.dishTypes}
+          onChange={changeHandler}
+          name="dishTypes"
           required
         />
         <span className={style.warning}>{errors.healthScore}</span>
@@ -126,12 +140,7 @@ const Form = () => {
         <label>Dietas: </label>
         {diets.map((diet, index) => (
           <div key={index} className={style.checkbox}>
-            <input
-              value={diet.id}
-              type="checkbox"
-              onChange={checkboxHandler}
-              required
-            />
+            <input value={diet.id} type="checkbox" onChange={checkboxHandler} />
             <span>{diet.name}</span>
           </div>
         ))}

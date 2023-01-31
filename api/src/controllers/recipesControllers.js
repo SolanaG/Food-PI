@@ -46,21 +46,21 @@ const createRecipe = async (
   name,
   summary,
   healthScore,
+  dishTypes,
   steps,
   diets,
   image
 ) => {
-  console.log("image:::", image);
   const result = await Recipe.create({
     name,
     summary,
     health_score: healthScore,
+    dishTypes,
     image,
     steps,
     created: true,
   });
   result.setDiets(diets);
-  console.log(result);
 };
 
 module.exports = { getAllRecipes, getRecipesById, createRecipe };
