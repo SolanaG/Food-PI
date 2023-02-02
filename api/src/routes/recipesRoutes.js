@@ -2,6 +2,8 @@ const {
   allRecipesHandler,
   recipeByIdHandler,
   createRecipeHandler,
+  deleteRecipeHandler,
+  editRecipeHandler,
 } = require("../handlers/recipeHandler");
 const { Recipe } = require("../db");
 
@@ -16,10 +18,9 @@ recipesRouter.get("/:id", recipeByIdHandler);
 // 3
 recipesRouter.post("/", createRecipeHandler);
 
-recipesRouter.delete("/:id", async (req, res) => {
-  const { id } = req.params;
-  await Recipe.destroy({ where: { id } });
-  res.send(`${id} Borrado!`);
-});
+// 4
+recipesRouter.delete("/:id", deleteRecipeHandler);
+
+recipesRouter.put("/:id", editRecipeHandler);
 
 module.exports = recipesRouter;

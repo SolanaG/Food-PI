@@ -11,6 +11,10 @@ export const CREATE_NEW_RECIPE = "CREATE_NEW_RECIPE";
 export const getRecipes = (queryValue) => {
   return async function (dispatch) {
     try {
+      if (queryValue !== "pito de marte" && !queryValue) {
+        alert("Por favor indica la receta que deseas buscar");
+      }
+      if (queryValue === "probando") queryValue = "";
       const response = await axios.get(
         `http://localhost:3001/recipes?name=${queryValue}`
       );

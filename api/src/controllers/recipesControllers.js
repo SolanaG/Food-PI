@@ -63,4 +63,21 @@ const createRecipe = async (
   result.setDiets(diets);
 };
 
-module.exports = { getAllRecipes, getRecipesById, createRecipe };
+// 5
+
+const editRecipe = async (body, id) => {
+  if (Object.keys(body).includes("diets")) {
+    result.setDiets(body.diets);
+  }
+
+  if (Object.keys(body).includes("diets") && Object.keys(body).length === 1) {
+    return;
+  }
+
+  delete body.diets;
+  const result = await Recipe.findByPk(id);
+
+  result.set(body);
+};
+
+module.exports = { getAllRecipes, getRecipesById, createRecipe, editRecipe };

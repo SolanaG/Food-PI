@@ -43,6 +43,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         recipes: [...filtered],
       };
+
     case SORT_BY_ABC:
       const sortedRecipes =
         action.payload === "1"
